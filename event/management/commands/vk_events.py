@@ -29,7 +29,7 @@ class Command(BaseCommand):
                                  offset=self.offset)
 
         pp = pprint.PrettyPrinter(indent=1)
-        # pp.pprint(data)   
+        # pp.pprint(data)
 
         if self.length == 0:
             self.length = data['count']
