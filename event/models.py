@@ -5,4 +5,4 @@ from django.db import models
 class Event(models.Model):
     lat = models.FloatField(help_text="Latitude of the center")
     lng = models.FloatField(help_text="Longitude of the center")
-    time = models.DateTimeField(help_text="time of the beginning of the event")
+    beginning_time = models.DateTimeField(help_text="time of the beginning of the event")
