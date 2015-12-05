@@ -10,3 +10,11 @@ class Command(BaseCommand):
     event.lng = 6
     event.time = datetime.datetime.now()
     #event.save() to save new ivent
+
+    ### to add extra arguments
+    #def add_arguments(self, parser):
+    #    parser.add_argument('count', type=int)
+
+    def handle(self, *args, **options):
+        pass
+        #count = options['count']
