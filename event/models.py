@@ -10,21 +10,22 @@ class Event(models.Model):
     def __str__(self):
         return self.title
 
-    def get_external_url(self):
-        if self.site == 'vk.com':
-            return '/'.join(['https:/', self.site, "club%s" % self.ext_id])
-        elif self.site == 'facebook.com':
-            return '/'.join(['https:/', self.site, "events", self.ext_id])
-
     SITE_CHOICES = (
         ('VK', 'vk.com'),
         ('FB', 'facebook.com'),
     )
 
+    def get_external_url(self):
+        site_url = [s[1] for s in self.SITE_CHOICES if s[0] == self.site][0]
+        if self.site == 'VK':
+            return '/'.join(['https:/', site_url, "club%s" % self.ext_id])
+        elif self.site == 'FB':
+            return '/'.join(['https:/', site_url, "events", self.ext_id])
+
     lat = models.FloatField(help_text="Latitude of the center")
     lng = models.FloatField(help_text="Longitude of the center")
     start_date = models.DateTimeField(help_text="Start date of the event")
-    photo = models.CharField(max_length=255, help_text="Preview")
+    photo = models.CharField(max_length=255, help_text="Preview", default="")
     ext_id = models.CharField(max_length=255,
                               help_text="ID from FB or VK",
                               unique=True)
