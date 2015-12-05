@@ -16,6 +16,10 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from rest_api import views as rest_api
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^docs/', include('rest_framework_swagger.urls')),
+    url(r'^api/events/get_near_location', rest_api.get_near_location),
 ]
