@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Registration Template for Bootstrap</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <!-- The mobile navbar-toggle button can be safely removed since you do not need it in a non-responsive implementation -->
+            <a class="navbar-brand" href="#">Eventer</a>
+        </div>
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <li><a href="/">Hi, {{request.user.username}}</a></li>
+            <li><a href="/logout/">LogOut</a></li>
+            {%else%}
+            <li><a href="/login/">Log in</a></li>
+            <li><a href="/registration/">Register</a></li>
+            {%endif%}
+        </ul>
+    </div>
+</nav>
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-9 blog-main container-fluid">
+            {% block content %}{% endblock %}
+        </div>
+        <!-- /.blog-main -->
+
+        <div class="col-sm-3 col-sm-offset-0 blog-sidebar">
+            <div class="sidebar-module">
+                <h4>Popular tags</h4>
+                <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">SQL</a>
+                <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Python</a>
+                <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Django</a>
+                <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Technotrack</a>
+                <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Java</a>
+                <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Nginx</a>
+                <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">gunicorn</a>
+                <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">CSS</a>
+                <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Bootstrap</a>
+                <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Python</a>
+                <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">C++</a>
+                <a class="js-nav trend-name" dir="ltr" href="/hashtag/totliv?src=tren" data-query-source="trend_click">Купить
+                    молоко</a>
+
+                <div class="sidebar-module">
+                    <h4>Best members</h4>
+                    <ol class="list-unstyled">
+                        <li><a href="#">Valera</a></li>
+                        <li><a href="#">Katya</a></li>
+                        <li><a href="#">Sasha</a></li>
+                        <li><a href="#">Lera</a></li>
+                        <li><a href="#">Koba</a></li>
+                        <li><a href="#">Polopo</a></li>
+                    </ol>
+                </div>
+
+
+            </div>
+            <!-- /.blog-sidebar -->
+
+
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+ </div>
+
+<div class="panel panel-footer">
+    <p class="text-muted">Powered by Alexey, Artem-lox, Igor, Sergey</p>
+</div>
+
+</body>
+
+</html>

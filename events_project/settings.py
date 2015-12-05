@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_swagger',
+    'widget_tweaks',
     'event',
 )
 
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'events_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["/home/lesaha/git/hakaton-events/src/templates/"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
