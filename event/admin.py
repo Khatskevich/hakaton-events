@@ -5,7 +5,7 @@ from event.models import Event
 
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('lat', 'lng', 'beginning_time',)
+    list_display = ('lat', 'lng', 'start_date',)
     # list_filter = ( 'type_of_user', 'status_of_registration')
     # search_fields = ['phone','first_name', 'last_name', 'email' ]
 

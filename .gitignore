@@ -59,3 +59,6 @@ target/
 #IDEA
 
 .idea
+
+# Config
+event/**/config.py
