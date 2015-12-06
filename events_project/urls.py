@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^docs/', include('rest_framework_swagger.urls')),
     url(r'^api/events/get_near_location', rest_api.get_near_location),
-    url(r"^map/", TemplateView.as_view(template_name="event/map.html"), name="map"),
+    url(r'^api/events/get', rest_api.get),
     url(r'^$', NewEvent , name="new_event"),
+    url(r"^map/", TemplateView.as_view(template_name="event/map.html"), name="map"),
 ]

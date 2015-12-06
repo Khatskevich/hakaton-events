@@ -4,6 +4,7 @@ from event.models import Event
 
 
 class GetEventsSerializer(serializers.Serializer):
+    sort_by = serializers.CharField(max_length=1, help_text='t=time, m=members', required=False, default='t')
     lat_ne = serializers.FloatField(help_text="Latitude of the north east")
     lng_ne = serializers.FloatField(help_text="Longitude of the north east")
     lat_sw = serializers.FloatField(help_text="Latitude of the south west")
@@ -14,8 +15,20 @@ class GetEventsSerializer(serializers.Serializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        # fields = ('__all__',)
-        exclude = ( "id",)
+        fields = ('id', 'lat', 'lng', 'start_date', 'photo', 'ext_id', 'title', )
+        #exclude = ( "id",)
+
+
+
+class GetEventSerializer(serializers.Serializer):
+    ext_id = serializers.CharField()
+
+
+
+class EventFullSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+        exclude = ( )
 
 class EventsSerializer(serializers.Serializer):
     events = EventSerializer(many=True)

@@ -24,8 +24,8 @@ class Event(models.Model):
 
     lat = models.FloatField(help_text="Latitude of the center")
     lng = models.FloatField(help_text="Longitude of the center")
-    start_date = models.DateTimeField(help_text="Start date of the event")
-    end_date = models.DateTimeField(help_text="Start date of the event", blank=True)
+    start_date = models.DateTimeField(help_text="Start date of the event",blank=True, null=True)
+    end_date = models.DateTimeField(help_text="Start date of the event", blank=True, null=True)
     photo = models.CharField(max_length=255, help_text="Preview", default="")
     ext_id = models.CharField(max_length=255,
                               help_text="ID from FB or VK",
@@ -35,3 +35,14 @@ class Event(models.Model):
     description = models.TextField(help_text="Event description text", blank=True)
     member_count = models.IntegerField(help_text="Number of event members")
     category = models.CharField(max_length=255, help_text="The category of the event")
+    external_url = models.CharField(max_length=255, help_text="external url")
+
+    def create_or_update(self):
+        self.external_url = self.get_external_url()
+        try:
+            prev = Event.objects.get(ext_id=self.ext_id)
+            self.pk = prev.pk
+            self.save()
+        except Exception:
+            self.save()
+

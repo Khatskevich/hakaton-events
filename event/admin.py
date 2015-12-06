@@ -5,9 +5,9 @@ from event.models import Event
 
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('lat', 'lng', 'start_date',)
-    # list_filter = ( 'type_of_user', 'status_of_registration')
-    # search_fields = ['phone','first_name', 'last_name', 'email' ]
+    list_display = ('title', 'lat', 'lng', 'start_date', 'site', 'ext_id',)
+    list_filter = ( 'site',)
+    search_fields = ['description','title' ]
 
 
 admin.site.register(Event, EventAdmin)
