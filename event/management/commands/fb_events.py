@@ -22,8 +22,7 @@ class FbEvent():
             'end_time',
             'place',
             'attending_count',
-            'maybe_count',
-            'interested_count',
+            'category',
         ]
         data = graph.request(
             "v2.5/search",
@@ -53,10 +52,18 @@ class FbEvent():
                 continue
             event['start_date'] = item['start_time'] \
                 if 'start_time' in item else ''
+            event['end_date'] = item['end_time'] \
+                if 'end_time' in item else ''
             event['title'] = item['name']
             event['ext_id'] = item['id']
             event['photo'] = item['cover']['source'] \
                 if 'cover' in item else ''
+            event['description'] = item['description'] \
+                if 'description' in item else ''
+            event['member_count'] = item['attending_count'] \
+                if 'attending_count' in item else ''
+            event['category'] = item['category'] \
+                if 'category' in item else ''
             try:
                 save_event, created = Event.objects.update_or_create(**event)
                 # print save_event.get_external_url()
@@ -67,3 +74,5 @@ class FbEvent():
             # time.sleep(0.5)
             options['after'] = data['paging']['cursors']['after']
             self.handle(**options)
+        else:
+            print("FB parser ends.")
