@@ -3,21 +3,19 @@
 import vk
 import pprint
 import config
-from django.core.management import BaseCommand
 from event.models import Event
 from datetime import datetime as dt
 import time
 import pytz
 
 
-class Command(BaseCommand):
+class VkEvent():
 
-    offset = 0
-    count = 1000
-    length = 0
-
-    def add_arguments(self, parser):
-        parser.add_argument('q', type=str)
+    # TODO: init count for get only one iterations
+    def __init__(self):
+        self.offset = 0
+        self.count = 1000
+        self.length = 0
 
     def handle(self, *args, **options):
         session = vk.Session(access_token=config.VK_API_TOKEN)

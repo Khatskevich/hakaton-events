@@ -3,19 +3,13 @@
 import facebook
 import pprint
 import config
-from django.core.management import BaseCommand
 from event.models import Event
-import time
 
 
-class Command(BaseCommand):
+class FbEvent():
 
-    offset = 0
-    count = 5000
-    length = 0
-
-    def add_arguments(self, parser):
-        parser.add_argument('q', type=str)
+    def __init__(self):
+        self.count = 5000
 
     def handle(self, *args, **options):
         graph = facebook.GraphAPI(access_token=config.FB_API_TOKEN)
@@ -43,7 +37,7 @@ class Command(BaseCommand):
             },
         )
         pp = pprint.PrettyPrinter(indent=1)
-        pp.pprint(len(data['data']))
+        # pp.pprint(data)
 
         for item in data['data']:
             event = {}
@@ -73,21 +67,3 @@ class Command(BaseCommand):
             # time.sleep(0.5)
             options['after'] = data['paging']['cursors']['after']
             self.handle(**options)
-
-# Parsing API:
-'''
-graph = facebook.GraphAPI(access_token=config.FB_API_TOKEN)
-fields = ['id', 'name', 'cover', 'description', 'start_time', 'end_time', 'place', 'attending_count', 'maybe_count']
-data = graph.request(
-    "v2.5/search",
-    {
-        'q': 'Москва',
-        'type': 'event',
-        'limit': 5000,
-        'since_date': 'currentTime',
-        'fields': ','.join(fields),
-    },
-)
-pp = pprint.PrettyPrinter(indent=1)
-pp.pprint(data)
-'''
