@@ -2,6 +2,24 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source $DIR/../env/bin/activate
 
+python $DIR/manage.py parse_events "распродажа"
+python $DIR/manage.py parse_events "скидки"
+python $DIR/manage.py parse_events "тренинг"
+
+python $DIR/manage.py parse_events "флешмоб"
+python $DIR/manage.py parse_events "флэшмоб"
+python $DIR/manage.py parse_events "флэш моб"
+
+python $DIR/manage.py parse_events учеба
+python $DIR/manage.py parse_events квест
+python $DIR/manage.py parse_events концерт
+
+python $DIR/manage.py parse_events спектакль
+python $DIR/manage.py parse_events встреча
+python $DIR/manage.py parse_events поход
+python $DIR/manage.py parse_events халява
+python $DIR/manage.py parse_events игра
+
 python $DIR/manage.py parse_events Минск
 python $DIR/manage.py parse_events Москва
 python $DIR/manage.py parse_events "Московская Область"
@@ -19,3 +37,30 @@ python $DIR/manage.py parse_events Киржач
 python $DIR/manage.py parse_events Питер
 python $DIR/manage.py parse_events Кишинев
 python $DIR/manage.py parse_events Брянск
+
+python $DIR/manage.py parse_events Новосибирск
+python $DIR/manage.py parse_events Брест
+python $DIR/manage.py parse_events Витебск
+python $DIR/manage.py parse_events Екатеринбург
+python $DIR/manage.py parse_events "Нижний Новгород"
+
+
+python $DIR/manage.py parse_events Казань
+python $DIR/manage.py parse_events Челябинск
+python $DIR/manage.py parse_events Омск
+python $DIR/manage.py parse_events Самара
+python $DIR/manage.py parse_events "Ростов"
+
+python $DIR/manage.py parse_events Уфа
+python $DIR/manage.py parse_events Красноярск
+python $DIR/manage.py parse_events Пермь
+python $DIR/manage.py parse_events Воронеж
+python $DIR/manage.py parse_events Волгоград
+
+
+python $DIR/manage.py parse_events Саратов
+python $DIR/manage.py parse_events Краснодар
+python $DIR/manage.py parse_events Тюмень
+
+
+
