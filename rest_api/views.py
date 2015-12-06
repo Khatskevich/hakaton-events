@@ -21,6 +21,6 @@ def get_near_location(request):
     if serializer.is_valid():
         sdata = serializer.data
         print sdata
-        events = Event.objects.all()
+        events = Event.objects.all().filter(lat__lte=sdata['lat_ne'], lat__gte=sdata['lat_sw'] , lng__lte=sdata['lng_ne'], lng__gte=sdata['lng_sw'] )[0:100]
         return Response(  EventsSerializer({'events':events}).data , status=status.HTTP_200_OK)
         #return Response( ' { "events" : ' + json.dumps(EventSerializer(events, many=True).data) + ' } ' , status=status.HTTP_200_OK)
