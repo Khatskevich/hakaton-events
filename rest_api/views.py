@@ -28,7 +28,7 @@ def get_near_location(request):
         if 'start_date' in sdata:
             events = events.filter(start_date__gte=sdata['start_date'])
         if 'end_date' in sdata:
-            events = events.filter(start_date__lte=sdata['end_date'])
+            events = events.filter(end_date__lte=sdata['end_date'])
 
         if not sdata.get('query_string','') == "":
             events = events.filter(Q(title__icontains=sdata['query_string'])
