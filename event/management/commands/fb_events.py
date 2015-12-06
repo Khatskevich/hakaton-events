@@ -22,8 +22,8 @@ class Command(BaseCommand):
         fields = [
             'id',
             'name',
-            'cover',
-            'description',
+            # 'cover',
+            # 'description',
             'start_time',
             'end_time',
             'place',
@@ -34,27 +34,42 @@ class Command(BaseCommand):
         data = graph.request(
             "v2.5/search",
             {
-                'q': 'Москва',
+                'q': options['q'],
                 'type': 'event',
-                'limit': count,
+                'limit': self.count,
                 'since_date': 'currentTime',
                 'fields': ','.join(fields),
+                'after': '' if not 'after' in options else options['after'],
             },
         )
         pp = pprint.PrettyPrinter(indent=1)
-        pp.pprint(data)
+        pp.pprint(len(data['data']))
 
         for item in data['data']:
             event = Event()
             event.site = 'FB'
-            event.lat = item['place']['location']['latitude'] if 'place' in item else 0
-            event.lng = item['place']['location']['longitude'] if 'place' in item else 0
-            event.start_date = item['start_time'] if 'start_time' in item else ''
+            event.lat = 0
+            event.lng = 0
+            if 'place' in item:
+                event.lat = item['place']['location']['latitude'] \
+                    if 'location' in item['place'] else 0
+                event.lng = item['place']['location']['longitude'] \
+                    if 'location' in item['place'] else 0
+            if event.lat * event.lng == 0:
+                continue
+            event.start_date = item['start_time'] \
+                if 'start_time' in item else ''
             event.title = item['name']
             event.ext_id = item['id']
-            event.photo = item['cover']['source'] if 'cover' in item else 0
+            event.photo = item['cover']['source'] \
+                if 'cover' in item else ''
             # event.save()
             # print event.get_external_url()
+
+        if 'paging' in data:
+            # time.sleep(0.5)
+            options['after'] = data['paging']['cursors']['after']
+            self.handle(**options)
 
 # Parsing API:
 '''
