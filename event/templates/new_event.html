@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block head_script %}
+  <link rel="stylesheet" href="http://www.malot.fr/bootstrap-datetimepicker/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css">
+{% endblock head_script %}
+
 {% block content %}
 {% load widget_tweaks %}
 
@@ -28,3 +32,11 @@
 </form>
 
 {% endblock %}
+
+{% block end_script %}
+  <script src="http://www.malot.fr/bootstrap-datetimepicker/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+  <script>
+    $("#id_start_date").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+    $("#id_end_date").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+  </script>
+{% endblock end_script %}
