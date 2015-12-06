@@ -9,8 +9,12 @@ class GetEventsSerializer(serializers.Serializer):
     radius = serializers.FloatField(help_text="Radius of search")
 
 
+
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
         # fields = ('__all__',)
-        exclude = ()
+        exclude = ( "id",)
+
+class EventsSerializer(serializers.Serializer):
+    events = EventSerializer(many=True)

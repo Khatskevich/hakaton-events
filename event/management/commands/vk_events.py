@@ -26,7 +26,8 @@ class Command(BaseCommand):
                                  type='event',
                                  fields=','.join(fields),
                                  count=self.count,
-                                 offset=self.offset)
+                                 offset=self.offset,
+                                 future=1)
 
         pp = pprint.PrettyPrinter(indent=1)
         # pp.pprint(data)   
@@ -39,13 +40,18 @@ class Command(BaseCommand):
             event.site = 'VK'
             event.lat = item['place']['latitude'] if 'place' in item else 0
             event.lng = item['place']['longitude'] if 'place' in item else 0
+            if event.lat*event.lng == 0 :
+                continue
             event.start_date = dt.utcfromtimestamp(item['start_date']) \
                 if 'start_date' in item else ''
             event.title = item['name']
             event.ext_id = item['id']
             event.photo = item['photo_200'] if 'photo_200' in item else 0
-            # event.save()
-            # print event.get_external_url()
+            try:
+                event.save()
+                print event.get_external_url()
+            except Exception:
+                pass
 
         if self.length > 0:
             self.offset += self.count
