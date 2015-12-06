@@ -50,7 +50,7 @@ var sameOrigin = function (url) {
   function init() {
     myMap = new ymaps.Map("map", {
       center: [55.8, 37.64],
-      zoom: 7
+      zoom: 10
     });
 
     myMap.events.add('boundschange', function (event) {
@@ -90,7 +90,8 @@ var sameOrigin = function (url) {
     data['events'].forEach(function (item) {
       myMap.geoObjects
         .add(new ymaps.Placemark([item['lat'], item['lng']], {
-          balloonContent: item['title']
+          balloonContent: '<strong>' + item['title'] + '</strong><br>' +
+            '<a href="' + item['external_url'] + '" target="_blank">Ссылка на мероприятие</a>'
         }, {
           preset: 'islands#icon',
           iconColor: '#0095b6'

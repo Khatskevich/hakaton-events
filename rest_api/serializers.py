@@ -15,7 +15,7 @@ class GetEventsSerializer(serializers.Serializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
-        fields = ('id', 'lat', 'lng', 'start_date', 'photo', 'ext_id', 'title', )
+        fields = ('id', 'lat', 'lng', 'start_date', 'photo', 'ext_id', 'title', 'external_url', )
         #exclude = ( "id",)
 
 
