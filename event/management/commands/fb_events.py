@@ -22,8 +22,8 @@ class Command(BaseCommand):
         fields = [
             'id',
             'name',
-            # 'cover',
-            # 'description',
+            'cover',
+            'description',
             'start_time',
             'end_time',
             'place',
@@ -46,26 +46,26 @@ class Command(BaseCommand):
         pp.pprint(len(data['data']))
 
         for item in data['data']:
-            event = Event()
-            event.site = 'FB'
-            event.lat = 0
-            event.lng = 0
+            event = {}
+            event['site'] = 'FB'
+            event['lat'] = 0
+            event['lng'] = 0
             if 'place' in item:
-                event.lat = item['place']['location']['latitude'] \
+                event['lat'] = item['place']['location']['latitude'] \
                     if 'location' in item['place'] else 0
-                event.lng = item['place']['location']['longitude'] \
+                event['lng'] = item['place']['location']['longitude'] \
                     if 'location' in item['place'] else 0
-            if event.lat * event.lng == 0:
+            if event['lat'] * event['lng'] == 0:
                 continue
-            event.start_date = item['start_time'] \
+            event['start_date'] = item['start_time'] \
                 if 'start_time' in item else ''
-            event.title = item['name']
-            event.ext_id = item['id']
-            event.photo = item['cover']['source'] \
+            event['title'] = item['name']
+            event['ext_id'] = item['id']
+            event['photo'] = item['cover']['source'] \
                 if 'cover' in item else ''
             try:
-                event.save()
-                print event.get_external_url()
+                save_event, created = Event.objects.update_or_create(**event)
+                # print save_event.get_external_url()
             except Exception:
                 pass
 
