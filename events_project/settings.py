@@ -59,7 +59,6 @@ ROOT_URLCONF = 'events_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["/home/lesaha/git/hakaton-events/src/templates/"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

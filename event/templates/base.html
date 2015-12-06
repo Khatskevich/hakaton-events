@@ -24,16 +24,17 @@
 <header id="header">
 	<div class="container">
 		<h1>{% block page_title %} <i class="fa fa-{{ fa|default:'map' }}"></i> {{ page_title|default:"Eventer" }} {% endblock page_title %}</h1>
+		<hr>
 	</div>
 </header>
 
 <div id="main">
 	<div class="container">
-	{% block page %}
+	{% block content %}
 		<div class="page-header">
 			<h1 class="text-center">MIPT Events <small>base page</small></h1>
 		</div>
-	{% endblock page %}
+	{% endblock content %}
 	</div>
 </div>
 

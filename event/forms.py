@@ -7,5 +7,5 @@ __author__ = 'lesaha'
 class NewEventForm(ModelForm):
     class Meta:
         model = Event
-        exclude = ( 'pk',)
+        exclude = ('pk', )
 

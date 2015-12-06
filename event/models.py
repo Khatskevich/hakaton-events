@@ -24,8 +24,8 @@ class Event(models.Model):
 
     lat = models.FloatField(help_text="Latitude of the center")
     lng = models.FloatField(help_text="Longitude of the center")
-    start_date = models.DateTimeField(help_text="Start date of the event",blank=True, null=True)
-    end_date = models.DateTimeField(help_text="Start date of the event", blank=True, null=True)
+    start_date = models.DateTimeField(help_text="Start date of the event. Format: YYYY-MM-DD HH:mm:ss",blank=True, null=True)
+    end_date = models.DateTimeField(help_text="Start date of the event. Format: YYYY-MM-DD HH:mm:ss", blank=True, null=True)
     photo = models.CharField(max_length=255, help_text="Preview", default="")
     ext_id = models.CharField(max_length=255,
                               help_text="ID from FB or VK",
