@@ -63,8 +63,11 @@ class Command(BaseCommand):
             event.ext_id = item['id']
             event.photo = item['cover']['source'] \
                 if 'cover' in item else ''
-            # event.save()
-            # print event.get_external_url()
+            try:
+                event.save()
+                print event.get_external_url()
+            except Exception:
+                pass
 
         if 'paging' in data:
             # time.sleep(0.5)
