@@ -27,5 +27,4 @@ urlpatterns = [
     url(r'^api/events/get', rest_api.get),
     url(r'^$', NewEvent , name="new_event"),
     url(r"^map/", TemplateView.as_view(template_name="event/map.html"), name="map"),
-    url(r'^search/', include('haystack.urls', app_name='search', namespace='search')),
 ]

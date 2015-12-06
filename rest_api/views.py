@@ -25,6 +25,11 @@ def get_near_location(request):
         print sdata
         events = Event.objects.all().filter(lat__lte=sdata['lat_ne'], lat__gte=sdata['lat_sw'] , lng__lte=sdata['lng_ne'], lng__gte=sdata['lng_sw'], start_date__gte=datetime.datetime.now())
 
+        if 'start_date' in sdata:
+            events = events.filter(start_date__gte=sdata['start_date'])
+        if 'end_date' in sdata:
+            events = events.filter(start_date__lte=sdata['end_date'])
+
         if not sdata.get('query_string','') == "":
             events = events.filter(Q(title__icontains=sdata['query_string'])
                            |Q(description__icontains=sdata['query_string']))
