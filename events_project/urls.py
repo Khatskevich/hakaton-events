@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.views.generic import TemplateView
 
 from rest_api import views as rest_api
 from event.views import NewEvent
@@ -25,4 +26,5 @@ urlpatterns = [
     url(r'^api/events/get_near_location', rest_api.get_near_location),
     url(r'^api/events/get', rest_api.get),
     url(r'^$', NewEvent , name="new_event"),
+    url(r"^map/", TemplateView.as_view(template_name="event/map.html"), name="map"),
 ]

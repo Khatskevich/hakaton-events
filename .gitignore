@@ -59,6 +59,7 @@ target/
 #IDEA
 
 .idea
+*/migrations/*
 
 # Config
 event/**/config.py

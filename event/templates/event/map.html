@@ -1,0 +1,14 @@
+{% extends "event/base.html" %}
+{% load static %}
+
+{% block head_script %}
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+{% endblock head_script %}
+
+{% block page %}
+	<div id="map" style="width: 100%; height: 600px"></div>
+{% endblock page %}
+
+{% block end_script %}
+<script src="{% static "event/js/map.js" %}"></script>
+{% endblock end_script %}
