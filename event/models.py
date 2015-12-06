@@ -35,8 +35,10 @@ class Event(models.Model):
     description = models.TextField(help_text="Event description text", blank=True)
     member_count = models.IntegerField(help_text="Number of event members")
     category = models.CharField(max_length=255, help_text="The category of the event")
+    external_url = models.CharField(max_length=255, help_text="external url")
 
     def create_or_update(self):
+        self.external_url = self.get_external_url()
         try:
             prev = Event.objects.get(ext_id=self.ext_id)
             self.pk = prev.pk
