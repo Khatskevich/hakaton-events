@@ -38,5 +38,12 @@
   <script>
     $("#id_start_date").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
     $("#id_end_date").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+
+    if (!$("#id_lat").val()) {
+      $("#id_lat").val('55.929714');
+    }
+    if (!$("#id_lng").val()) {
+      $("#id_lng").val('37.517528');
+    }
   </script>
 {% endblock end_script %}
