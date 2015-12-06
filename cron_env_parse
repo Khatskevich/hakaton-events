@@ -1,0 +1,20 @@
+#!/bin/bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source $DIR/../env/bin/activate
+python $DIR/manage.py parse_events Кишинев
+python $DIR/manage.py parse_events Брянск
+python $DIR/manage.py parse_events Минск
+python $DIR/manage.py parse_events Москва
+python $DIR/manage.py parse_events "Московская Область"
+python $DIR/manage.py parse_events МФТИ
+python $DIR/manage.py parse_events Долгопрудный
+python $DIR/manage.py parse_events Балашиха
+python $DIR/manage.py parse_events Солнечногорск
+python $DIR/manage.py parse_events Жуковский
+python $DIR/manage.py parse_events Пушкино
+python $DIR/manage.py parse_events Мытищи
+python $DIR/manage.py parse_events Химки
+python $DIR/manage.py parse_events Одинцово
+python $DIR/manage.py parse_events Лобня
+python $DIR/manage.py parse_events Киржач
+python $DIR/manage.py parse_events Питер
