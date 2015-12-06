@@ -5,6 +5,7 @@ from event.models import Event
 
 class GetEventsSerializer(serializers.Serializer):
     sort_by = serializers.CharField(max_length=1, help_text='t=time, m=members', required=False, default='t')
+    query_string = serializers.CharField( max_length=100 ,help_text="Query string", default='')
     lat_ne = serializers.FloatField(help_text="Latitude of the north east", default=60)
     lng_ne = serializers.FloatField(help_text="Longitude of the north east", default=40)
     lat_sw = serializers.FloatField(help_text="Latitude of the south west", default=50)
