@@ -4,9 +4,10 @@ from event.models import Event
 
 
 class GetEventsSerializer(serializers.Serializer):
-    lat = serializers.FloatField(help_text="Latitude of the center")
-    lng = serializers.FloatField(help_text="Longitude of the center")
-    radius = serializers.FloatField(help_text="Radius of search")
+    lat_ne = serializers.FloatField(help_text="Latitude of the north east")
+    lng_ne = serializers.FloatField(help_text="Longitude of the north east")
+    lat_sw = serializers.FloatField(help_text="Latitude of the south west")
+    lng_sw = serializers.FloatField(help_text="Longitude of the south west")
 
 
 
