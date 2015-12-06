@@ -1,9 +1,8 @@
-import datetime
+# -*- coding: utf-8 -*-
+
 from django.core.management import BaseCommand
-from event.models import Event
 import vk_events
 import fb_events
-
 
 class Command(BaseCommand):
 

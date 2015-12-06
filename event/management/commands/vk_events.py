@@ -43,9 +43,15 @@ class VkEvent():
                 continue
             event['start_date'] = dt.fromtimestamp(item['start_date'], tz=pytz.utc) \
                 if 'start_date' in item else ''
+            event['end_date'] = dt.fromtimestamp(item['end_date'], tz=pytz.utc) \
+                if 'end_date' in item else ''
             event['title'] = item['name']
             event['ext_id'] = item['id']
             event['photo'] = item['photo_200'] if 'photo_200' in item else 0
+            event['description'] = item['description'] \
+                if 'description' in item else ''
+            event['member_count'] = item['member_count'] \
+                if 'member_count' in item else 0
             try:
                 save_event, created = Event.objects.update_or_create(**event)
                 # print save_event.get_external_url()
@@ -57,3 +63,5 @@ class VkEvent():
             self.length -= self.count
             time.sleep(0.5)
             self.handle(**options)
+        else:
+            print("VK parse ends.")
