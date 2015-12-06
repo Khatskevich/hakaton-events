@@ -21,7 +21,8 @@ class VkEvent():
         print "VK parsing..."
         session = vk.Session(access_token=config.VK_API_TOKEN)
         api = vk.API(session, v='5.40', lang='ru', timeout=100)
-        fields = ['place', 'city', 'members_count', 'start_date']
+        fields = ['place', 'description', 'members_count',
+                  'start_date', 'end_date']
         data = api.groups.search(q=options['q'],
                                  type='event',
                                  fields=','.join(fields),
@@ -52,8 +53,8 @@ class VkEvent():
             event.photo = item['photo_200'] if 'photo_200' in item else 0
             event.description = item['description'] \
                 if 'description' in item else ''
-            event.member_count = item['member_count'] \
-                if 'member_count' in item else 0
+            event.member_count = item['members_count'] \
+                if 'members_count' in item else 0
             event.create_or_update()
             """
             event = {}
@@ -73,8 +74,8 @@ class VkEvent():
             event['photo'] = item['photo_200'] if 'photo_200' in item else 0
             event['description'] = item['description'] \
                 if 'description' in item else ''
-            event['member_count'] = item['member_count'] \
-                if 'member_count' in item else 0
+            event['member_count'] = item['members_count'] \
+                if 'members_count' in item else 0
             try:
                 save_event, created = Event.objects.update_or_create(**event)
                 # print save_event.get_external_url()
